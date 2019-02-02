@@ -4,18 +4,16 @@ Word Search application has 2 components:
 1. `word_search_system`: Responsible for managing the word list and facilitating queries to the it
 2. `word_search_api`: Exposes a REST API for clients to use. Talks via gRPC to the `word_search_system`
 
-Contents:
+#### Prerequisites:
+1. Docker OR Docker-toolbox
+2. Node.js (tested on 10.15.0 but above 8 should work)
+3. Golang 1.11 (not necessary unless you want to dev the code)
+
+#### Contents:
 1. [Build](#build)
 2. [Deploy](#deploy)
 3. [Source](#source)
 4. [Design Notes](#design-notes)
-
-Prerequisites for build:
-1. Docker OR Docker-toolbox
-2. Node.js (tested on 10.15.0 but above 8 should work)
-
-Prerequisites for dev:
-1. Golang 1.11.x
 
 ## Build
 #### Install CLI
