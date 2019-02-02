@@ -234,8 +234,8 @@ The config file templates are available in the source of each component as `conf
 
 Also for local development, each application will run successfully if the developer simply performs:
 ```sh
-cp config.template.json config.json
 cd $GOPATH/src/github.com/chrisjpalmer/word_search_api
+cp config.template.json config.json
 go run github.com/chrisjpalmer/word_search_api
 ```
 `.gitignore` is set to ignore `config.json` so the developer is free to mess around here.
