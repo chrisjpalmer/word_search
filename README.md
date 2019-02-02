@@ -29,13 +29,23 @@ eval $(docker-machine env default)
 
 #### Build and Test
 ```sh
-word_search_cli build --build-repo-tag=1.1.0 --src-repo-tag=1.0.0 word_search_api
+word_search_cli build --build-repo-tag=1.0.0 --src-repo-tag=1.1.0 word_search_api
 word_search_cli build --build-repo-tag=1.0.0 --src-repo-tag=1.0.0 word_search_system
 ```
 
 Sample output:
 ```sh
-TODO
+...
+Step 7/9 : RUN go test -v
+ ---> Running in fd62fcb1d4aa
+=== RUN   TestWordSearchService
+--- PASS: TestWordSearchService (0.00s)
+=== RUN   TestWordSearchService_SearchWord
+--- PASS: TestWordSearchService_SearchWord (0.00s)
+=== RUN   TestWordSearchService_AddWord
+=== RUN   TestWordSearchService_AddWord/basic_test
+...
+Successfully tagged chrisjpalmer/word_search_system:1.0.0
 ```
 
 #### Versions
@@ -82,7 +92,18 @@ docker stack deploy -c word_search.yaml ws
 
 #### Sample Commands
 ```sh
-TODO
+#Add Words
+curl -H "Content-Type: application/json" -X POST --data '{"words":["cool"]}' http://localhost/words
+{}
+
+#Search Words
+curl -H "Content-Type: application/json" -X GET --data '{"keyWord":"co"}' http://localhost/words
+{"matches":["cool"]}
+
+#Top 5 Searched Words
+curl -H "Content-Type: application/json" -X GET http://localhost/keywords
+{"keywords":["a","co","cool"]}
+
 ```
 
 #### Versions
