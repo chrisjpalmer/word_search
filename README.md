@@ -59,7 +59,7 @@ The source lives here:
 1. https://github.com/chrisjpalmer/word_search_system
 2. https://github.com/chrisjpalmer/word_search_api
 
-For each source there is a builder repo which packs the source into a docker container:
+For each source there is a builder repo which packs the source into a docker image:
 1. https://github.com/chrisjpalmer/word_search_system_builder
 2. https://github.com/chrisjpalmer/word_search_api_builder
 
