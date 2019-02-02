@@ -195,12 +195,12 @@ Compatibility between builders and source versions are listed above.
 
 When you invoke this command:
 ```sh
-word_search_cli build --build-repo-tag=1.0.0 --source-repo-tag=1.0.0 word_search_system
+word_search_cli build --build-repo-tag=1.0.0 --source-repo-tag=1.2.0 word_search_api
 ```
 The CLI does the following:
-1. Clones the builder repo in $CWD/temp
-2. Checks it out to a specific tag
-3. Runs `docker build -t name-of-image:X.X.X --build-arg SRC_TAG=X.X.X .`
+1. Runs `git clone https://github.com/chrisjpalmer/word_search_api_builder $CWD/temp/word_search_api_builder`
+2. Runs `git checkout 1.0.0`
+3. Runs `docker build -t chrisjpalmer/word_search_api:1.2.0 --build-arg SRC_TAG=1.2.0 .`
 
 #### Application Structure
 
