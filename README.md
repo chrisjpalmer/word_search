@@ -147,7 +147,7 @@ git checkout 1.0.0
 ```
 
 #### Versions
-You cannot use some versions of the word_search_system with the word_search_api because they have incompatible gRPC implementation.
+You cannot use some versions of the `word_search_system` with the `word_search_api` because they have incompatible gRPC implementation.
 This table shows the gRPC versions and which repos support them.
 
 | word_search_system_grpc | word_search_api version | word_search_system version |
@@ -164,6 +164,7 @@ I use `dep` to manage dependencies. `dep` allows version constraints to be place
 1. [How the build system works](#how-the-build-system-works)
 2. [Application structure](#application-structure)
 3. [Configuration](#configuration)
+4. [All Repositories](#all-repositories)
 
 #### How the build system works
 I wanted to keep the build system as simple as possible whilst allowing flexiblity for the developer in the future.
@@ -230,3 +231,14 @@ cd $GOPATH/src/github.com/chrisjpalmer/word_search_api
 go run github.com/chrisjpalmer/word_search_api
 ```
 `.gitignore` is set to ignore `config.json` so the developer is free to mess around here.
+
+
+#### All Repositories:
+1. https://github.com/chrisjpalmer/word_search : README
+2. https://github.com/chrisjpalmer/word_search_system : the `word_search_system` source
+3. https://github.com/chrisjpalmer/word_search_api : the `word_search_api` source
+4. https://github.com/chrisjpalmer/word_search_system_grpc : the protocol buffer definitions + transpiled go files for grpc
+5. https://github.com/chrisjpalmer/word_search_system_builder : the `word_search_system` builder
+6. https://github.com/chrisjpalmer/word_search_api_builder : the `word_search_api` builder
+7. https://github.com/chrisjpalmer/word_search_cli : the cli for building the images quickly
+8. https://github.com/chrisjpalmer/word_search_deploy_production : already assembled docker stack files ready for quick deployment
