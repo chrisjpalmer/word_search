@@ -26,7 +26,7 @@ docker stack deploy -c word_search.yaml ws
 
 ```
 
-## Build from the source
+## Build Docker Images
 You can build from the source easily using the cli which ships with word_search:
 ### Clone CLI Tool and Install it
 ```sh
@@ -47,3 +47,21 @@ word_search_cli build --build-repo-tag=1.0.0 --src-repo-tag=1.0.0 word_search_sy
 ```
 
 Whenever you build, tests are run at the same time. On your machine the build repository which contains the docker file for building the target is checked out. Then the CLI runs the `docker build` command on the repository. The dockerfile contains commands to pull the specific source tag from git hub, build the source and run the tests.
+
+
+## View the source
+The source repositories for the two components are located here on github:
+```sh
+got get -u https://github.com/chrisjpalmer/word_search_api
+got get -u https://github.com/chrisjpalmer/word_search_system
+```
+
+There is an additional repository which contains the grpc structures for communication between both microservices.
+This repository is semver versioned and a dependency constraint in both microservice repositories ensures that the correct version is being used.
+```sh
+go get -u https://github.com/chrisjpalmer/word_search_system_grpc
+```
+
+## Dependency management
+To manage dependencies, I am using go's `dep` tool which ensures that the source is always in sync with its dependencies.
+Traditionally in go, dependencies are committed to the repo, unlike node. They are located in the vendor/ directory.
