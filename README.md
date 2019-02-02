@@ -147,8 +147,8 @@ go get -u github.com/chrisjpalmer/word_search_system_grpc
 
 To see specific versions checkout to the tag:
 ```sh
-cd $GOPATH/src/github.com/chrisjpalmer/word_search_system
-git checkout 1.0.1
+cd $GOPATH/src/github.com/chrisjpalmer/word_search_api
+git checkout 1.2.0
 ```
 
 #### Versions
