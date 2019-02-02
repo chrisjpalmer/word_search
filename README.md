@@ -63,7 +63,7 @@ For each source there is a builder repo which packs the source into a docker ima
 1. https://github.com/chrisjpalmer/word_search_system_builder
 2. https://github.com/chrisjpalmer/word_search_api_builder
 
-Each repo is versioned and certain versions of builders wont work with certain versions of source. See table below:
+Each builder is versioned and certain versions of builders may not work with certain versions of source. See table below:
 
 `word_search_system`
 
