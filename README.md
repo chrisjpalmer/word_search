@@ -154,7 +154,7 @@ git checkout 1.2.0
 ```
 
 #### Versions
-You cannot use some versions of the `word_search_system` with the `word_search_api` because they have incompatible gRPC implementation.
+Some versions of the `word_search_system` may not work some versions of `word_search_api` because they may have incompatible gRPC implementation.
 This table shows the gRPC versions and which repos support them.
 
 | word_search_system_grpc | word_search_api version | word_search_system version |
