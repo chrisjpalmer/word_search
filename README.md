@@ -232,7 +232,7 @@ The `word_search_system` needs to know what port it should listen on. Likewise t
 
 The config file templates are available in the source of each component as `config.template.json`. This helps other developers understand what the config file should look like.
 
-Also during development, each application will run successfully if the developer simply performs:
+Also for local development, each application will run successfully if the developer simply performs:
 ```sh
 cp config.template.json config.json
 cd $GOPATH/src/github.com/chrisjpalmer/word_search_api
