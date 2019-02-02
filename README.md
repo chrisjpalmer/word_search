@@ -201,7 +201,7 @@ When you invoke this command:
 word_search_cli build --build-repo-tag=1.0.1 --src-repo-tag=1.2.0 word_search_api
 ```
 The CLI does the following:
-1. Runs `git clone https://github.com/chrisjpalmer/word_search_api_builder $CWD/temp/word_search_api_builder`
+1. Runs `git clone https://github.com/chrisjpalmer/word_search_api_builder temp/word_search_api_builder`
 2. Runs `cd temp/word_search_api_builder && git checkout 1.0.1`
 3. Runs `docker build -t chrisjpalmer/word_search_api:1.2.0 --build-arg SRC_TAG=1.2.0 .`
 
