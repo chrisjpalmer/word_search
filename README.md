@@ -8,7 +8,7 @@ Contents:
 1. [Build](#build)
 2. [Deploy](#deploy)
 3. [Source](#source)
-4. [Notes](#notes)
+4. [Design Notes](#design-notes)
    
 ## Build
 #### Install CLI
@@ -128,7 +128,12 @@ In reality, some scheme should be decided about when grpc versions are incompati
 #### Dependency management
 I use `dep` to manage dependencies. `dep` allows version constraints to be placed on dependencies. `dep ensure` command makes the dependency tree sync with the contraints and code. I used this to make binding constraints on the grpc version for each repo.
 
-## Notes
+## Design Notes
+
+1. [How the build system works](#how-the-build-system-works)
+2. [Application structure](#application-structure)
+3. [Configuration](#configuration)
+
 #### How the build system works
 I wanted to keep the build system as simple as possible whilst allowing flexiblity for the developer in the future.
 
@@ -159,3 +164,36 @@ The CLI does the following:
 1. Clones the builder repo in $CWD/temp
 2. Checks it out to a specific tag
 3. Runs `docker build -t name-of-image:X.X.X --build-arg SRC_TAG=X.X.X .`
+
+#### Application Structure
+
+*word_search_system*
+This component manages the words list and exposes 3 methods via gRPC for manipulating and quering this words list:
+1. SearchWord - takes a keyword as a parameter and searches through the words list, returning possible matches.
+2. AddWords - takes a list of words as a parameter and adds them to the words list.
+3. GetTop5KeyWords - returns the top 5 most searched keywords
+
+This component defines a service object called `WordSearchService` which is the domain for all word searching logic.
+Unit tests exist for this object.
+A gRPC server recieves function calls `SearchWord`, `AddWords`, `GetTop5KeyWords` and execute the corresponding functions on `WordSearchService`.
+
+*word_search_api*
+This component exposes a REST API which allows an http client to query the words list. It interfaces with the `word_search_system` component via gRPC.
+
+The REST API exposes the following methods:
+1. GET /words - takes a keyword as a parameter and searches through the words list, returning possible matches.
+2. POST /words - takes a list of words as a parameter and adds them to the words list.
+3. GET /keywords - returns the top 5 most searched keywords
+
+#### Configuration
+The `word_search_system` needs to know what port it should listen on. Likewise the `word_search_api` needs to know the address of the `word_search_system` to invoke its methods via gRPC. This is set dynamically by configuration files. The configuration files are passed into the docker swarm as instructed by the docker stack file. Then they are mounted in the container. When each component boots, it reads and parses this config information.
+
+The config file templates are available in the source of each component as `config.template.json`. This helps other developers understand what the config file should look like.
+
+Also during development, each application will run successfully if the developer simply performs:
+```sh
+cp config.template.json config.json
+cd $GOPATH/src/github.com/chrisjpalmer/word_search_api
+go run github.com/chrisjpalmer/word_search_api
+```
+`.gitignore` is set to ignore `config.json` so the developer is free to mess around here.
