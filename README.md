@@ -12,7 +12,7 @@ Contents:
 
 Prerequisites for build:
 1. Docker OR Docker-toolbox
-2. NodeJs 10.0.0 or higher
+2. Node.js (tested on 10.15.0 but above 8 should work)
 
 Prerequisites for dev:
 1. Golang 1.11.x
