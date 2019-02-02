@@ -1,67 +1,124 @@
 # Word Search
 ## Introduction
+Word Search application has 2 components:
+1. `word_search_system`: Responsible for managing the word list and facilitating queries to the it
+2. `word_search_api`: Exposes a REST API for clients to use. Talks via gRPC to the `word_search_system`
 
-## Getting Started
-You can deploy the entire stack very quickly if you have git and docker installed on your machine.
-
-### Clone Production Stack
+Contents:
+1. [Build](#build)
+2. [Deploy](#deploy)
+3. [Source](#source)
+   
+## Build
+#### Install CLI
 ```sh
-git clone https://github.com/chrisjpalmer/word_search_deploy_production --branch wsa-1.0.0-wss-1.0.0 # see https://github.com/chrisjpalmer/word_search_deploy_production readme for more tags
-cd word_search_deploy_production
-```
+git clone https://github.com/chrisjpalmer/word_search_cli
+cd word_search_cli
+npm link
 
-### Prepare Docker Machine
-```sh
-eval $(docker-machine env default)
-docker swarm init
-```
-
-### Deploy Stack
-```sh
-docker stack deploy -c word_search.yaml ws
-```
-
-### Test
-```sh
-
-```
-
-## Build Docker Images
-You can build from the source easily using the cli which ships with word_search:
-### Clone CLI Tool and Install it
-```sh
-git clone https://github.com/chrisjpalmer/word_search_cli && cd word_search_cli && npm link
 cd /my/blank/proj/dir #specify a blank project directory
 word_search_cli init #initializes a new word_search_proj in your current directory
 ```
 
-### Prepare Docker Machine
+#### Point shell to docker instance
+You can skip this step if your shell automatically points to the docker daemon.
 ```sh
 eval $(docker-machine env default)
 ```
 
-### Build source via the CLI
+#### Build and Test
 ```sh
-word_search_cli build --build-repo-tag=1.0.0 --src-repo-tag=1.0.0 word_search_api #see https://github.com/chrisjpalmer/word_search_api for more tags
-word_search_cli build --build-repo-tag=1.0.0 --src-repo-tag=1.0.0 word_search_system #see https://github.com/chrisjpalmer/word_search_system for more tags
+word_search_cli build --build-repo-tag=1.0.0 --src-repo-tag=1.0.0 word_search_api
+word_search_cli build --build-repo-tag=1.0.0 --src-repo-tag=1.0.0 word_search_system
 ```
 
-Whenever you build, tests are run at the same time. On your machine the build repository which contains the docker file for building the target is checked out. Then the CLI runs the `docker build` command on the repository. The dockerfile contains commands to pull the specific source tag from git hub, build the source and run the tests.
-
-
-## View the source
-The source repositories for the two components are located here on github:
+Sample output:
 ```sh
-got get -u https://github.com/chrisjpalmer/word_search_api
-got get -u https://github.com/chrisjpalmer/word_search_system
+TODO
 ```
 
-There is an additional repository which contains the grpc structures for communication between both microservices.
-This repository is semver versioned and a dependency constraint in both microservice repositories ensures that the correct version is being used.
+#### Versions
+The source lives here:
+1. https://github.com/chrisjpalmer/word_search_system
+2. https://github.com/chrisjpalmer/word_search_api
+
+For each source there is a builder repo which packs the source into a docker container:
+1. https://github.com/chrisjpalmer/word_search_system_builder
+2. https://github.com/chrisjpalmer/word_search_api_builder
+
+Each repo is versioned and certain versions of builders wont work with certain versions of source. See table below:
+
+`word_search_system`
+| builder version | requires source version |
+| -- | -- |
+| 1.0.0 | 1.0.0 |
+
+`word_search_api`
+| builder version | requires source version |
+| -- | -- |
+| 1.0.0 | 1.0.0 |
+
+## Deploy
+#### Clone Production Deploy
 ```sh
+git clone https://github.com/chrisjpalmer/word_search_deploy_production --branch wsa-1.0.0-wss-1.0.0
+cd word_search_deploy_production
+```
+
+#### Point shell to docker instance
+You can skip this step if your shell automatically points to the docker daemon.
+```sh
+eval $(docker-machine env default)
+```
+
+#### Deploy Stack
+```sh
+docker swarm init # if you don't already have a swarm
+docker stack deploy -c word_search.yaml ws
+```
+
+#### Sample Commands
+```sh
+TODO
+```
+
+#### Versions
+The Production Deploy repo has the following tags:
+| production deploy version | word_search_api version | word_search_system version |
+| -- | -- | -- |
+| wsa-1.0.0-wss-1.0.0 | 1.0.0 | 1.0.0 |
+
+
+I guess in real situations, you would use a repo like this in conjunction with AWS Secrets manager for handling keys.
+
+## Source
+There are 3 source repositories:
+1. https://github.com/chrisjpalmer/word_search_system : the `word_search_system` source
+2. https://github.com/chrisjpalmer/word_search_api : the `word_search_api` source
+3. https://github.com/chrisjpalmer/word_search_system_grpc : the protocol buffer definitions + transpiled go files for grpc communication
+
+#### Clone
+To play with them, use `go get`.
+```sh
+go get -u https://github.com/chrisjpalmer/word_search_system
+go get -u https://github.com/chrisjpalmer/word_search_api
 go get -u https://github.com/chrisjpalmer/word_search_system_grpc
 ```
 
-## Dependency management
-To manage dependencies, I am using go's `dep` tool which ensures that the source is always in sync with its dependencies.
-Traditionally in go, dependencies are committed to the repo, unlike node. They are located in the vendor/ directory.
+To see specific versions checkout to the tag:
+```sh
+cd $GOPATH/src/github.com/chrisjpalmer/word_search_system
+git checkout 1.0.0
+```
+
+#### Versions
+You cannot use some versions of the word_search_system with the word_search_api because they have incompatible gRPC implementation.
+This table shows the gRPC versions and which repos support them.
+| word_search_system_grpc | word_search_api version | word_search_system version |
+| -- | -- | -- |
+| 1.0.0 | supported by: 1.0.0 | supported by: 1.0.0 |
+
+In reality, some scheme should be decided about when grpc versions are incompatible due to major change to the implementation.
+
+#### Dependency management
+I use `dep` to manage dependencies. `dep` allows version constraints to be placed on dependencies. `dep ensure` command makes the dependency tree sync with the contraints and code. I used this to make binding constraints on the grpc version for each repo.
