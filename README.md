@@ -9,7 +9,14 @@ Contents:
 2. [Deploy](#deploy)
 3. [Source](#source)
 4. [Design Notes](#design-notes)
-   
+
+Prerequisites for build:
+1. Docker OR Docker-toolbox
+2. NodeJs 10.0.0 or higher
+
+Prerequisites for dev:
+1. Golang 1.11.x
+
 ## Build
 #### Install CLI
 ```sh
