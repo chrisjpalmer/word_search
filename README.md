@@ -35,8 +35,8 @@ eval $(docker-machine env default)
 
 #### Build and Test
 ```sh
-word_search_cli build --build-repo-tag=1.0.0 --src-repo-tag=1.2.0 word_search_api
-word_search_cli build --build-repo-tag=1.0.0 --src-repo-tag=1.0.0 word_search_system
+word_search_cli build --build-repo-tag=1.0.1 --src-repo-tag=1.2.0 word_search_api
+word_search_cli build --build-repo-tag=1.0.1 --src-repo-tag=1.0.0 word_search_system
 ```
 
 Sample output:
@@ -70,12 +70,14 @@ Each repo is versioned and certain versions of builders wont work with certain v
 | builder version | requires source version |
 | :-------------- | :---------------------- |
 | 1.0.0 | 1.0.0 |
+| 1.0.1 | 1.0.0 |
 
 `word_search_api`
 
 | builder version | requires source version |
 | :-- | :-- |
 | 1.0.0 | 1.0.0, 1.1.0, 1.2.0 |
+| 1.0.1 | 1.0.0, 1.1.0, 1.2.0 |
 
 #### Uninstall CLI
 If you ever want to uninstall the CLI, just `cd` into the location where you originally cloned it, and run `npm unlink`
