@@ -29,7 +29,7 @@ eval $(docker-machine env default)
 
 #### Build and Test
 ```sh
-word_search_cli build --build-repo-tag=1.0.0 --src-repo-tag=1.0.0 word_search_api
+word_search_cli build --build-repo-tag=1.1.0 --src-repo-tag=1.0.0 word_search_api
 word_search_cli build --build-repo-tag=1.0.0 --src-repo-tag=1.0.0 word_search_system
 ```
 
@@ -59,12 +59,12 @@ Each repo is versioned and certain versions of builders wont work with certain v
 
 | builder version | requires source version |
 | :-- | :-- |
-| 1.0.0 | 1.0.0 |
+| 1.0.0 | 1.0.0, 1.1.0 |
 
 ## Deploy
 #### Clone Production Deploy
 ```sh
-git clone https://github.com/chrisjpalmer/word_search_deploy_production --branch wsa-1.0.0-wss-1.0.0
+git clone https://github.com/chrisjpalmer/word_search_deploy_production --branch wsa-1.1.0-wss-1.0.0
 cd word_search_deploy_production
 ```
 
@@ -91,6 +91,7 @@ The Production Deploy repo has the following tags:
 | production deploy version | word_search_api version | word_search_system version |
 | :-- | :-- | :-- |
 | wsa-1.0.0-wss-1.0.0 | 1.0.0 | 1.0.0 |
+| wsa-1.1.0-wss-1.0.0 | 1.1.0 | 1.0.0 |
 
 
 I guess in real situations, you would use a repo like this in conjunction with AWS Secrets manager for handling keys.
@@ -121,7 +122,7 @@ This table shows the gRPC versions and which repos support them.
 
 | word_search_system_grpc | word_search_api version | word_search_system version |
 | :-- | :-- | :-- |
-| 1.0.0 | supported by: 1.0.0 | supported by: 1.0.0 |
+| 1.0.0 | supported by: 1.0.0, 1.1.0 | supported by: 1.0.0 |
 
 In reality, some scheme should be decided about when grpc versions are incompatible due to major change to the implementation.
 
