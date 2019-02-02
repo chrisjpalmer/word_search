@@ -87,7 +87,7 @@ npm unlink
 ```
 
 ## Deploy
-#### Clone Production Deploy
+#### Clone
 ```sh
 git clone https://github.com/chrisjpalmer/word_search_deploy_production --branch wsa-1.2.0-wss-1.0.0
 cd word_search_deploy_production
