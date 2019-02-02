@@ -21,7 +21,7 @@ Word Search application has 2 components:
 git clone https://github.com/chrisjpalmer/word_search_cli
 cd word_search_cli
 npm install
-npm link
+npm link # if on a mac, you may need to run `sudo npm link`
 
 cd /my/blank/proj/dir #specify a blank project directory
 word_search_cli init #initializes a new word_search_proj in your current directory
