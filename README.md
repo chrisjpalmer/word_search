@@ -72,6 +72,13 @@ Each repo is versioned and certain versions of builders wont work with certain v
 | :-- | :-- |
 | 1.0.0 | 1.0.0, 1.1.0, 1.2.0 |
 
+#### Uninstall CLI
+If you ever want to uninstall the CLI, just `cd` into the location where you originally cloned it, and run `npm unlink`
+```sh
+cd word_search_cli
+npm unlink
+```
+
 ## Deploy
 #### Clone Production Deploy
 ```sh
