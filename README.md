@@ -195,7 +195,7 @@ Compatibility between builders and source versions are listed above.
 
 When you invoke this command:
 ```sh
-word_search_cli build --build-repo-tag=1.0.0 --source-repo-tag=1.2.0 word_search_api
+word_search_cli build --build-repo-tag=1.0.0 --src-repo-tag=1.2.0 word_search_api
 ```
 The CLI does the following:
 1. Runs `git clone https://github.com/chrisjpalmer/word_search_api_builder $CWD/temp/word_search_api_builder`
