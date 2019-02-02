@@ -154,7 +154,7 @@ git checkout 1.2.0
 ```
 
 #### Managing gRPC
-Specific information on how to build the gRPC protoc definitions for golang can be found in the grpc repo: https://github.com/chrisjpalmer/word_search_system_grpc
+Specific information on how to build the gRPC protocol definitions for golang can be found in the grpc repo: https://github.com/chrisjpalmer/word_search_system_grpc
 
 #### Versions
 Some versions of the `word_search_system` may not work with some versions of `word_search_api` because they may have incompatible gRPC implementation.
