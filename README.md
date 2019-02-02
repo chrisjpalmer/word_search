@@ -191,6 +191,7 @@ The CLI does the following:
 #### Application Structure
 
 *word_search_system*
+
 This component manages the words list and exposes 3 methods via gRPC for manipulating and quering this words list:
 1. SearchWord - takes a keyword as a parameter and searches through the words list, returning possible matches.
 2. AddWords - takes a list of words as a parameter and adds them to the words list.
@@ -198,9 +199,10 @@ This component manages the words list and exposes 3 methods via gRPC for manipul
 
 This component defines a service object called `WordSearchService` which is the domain for all word searching logic.
 Unit tests exist for this object.
-A gRPC server recieves function calls `SearchWord`, `AddWords`, `GetTop5KeyWords` and execute the corresponding functions on `WordSearchService`.
+The component recieves gRPC function calls `SearchWord`, `AddWords`, `GetTop5KeyWords` and executes logic on `WordSearchService`.
 
 *word_search_api*
+
 This component exposes a REST API which allows an http client to query the words list. It interfaces with the `word_search_system` component via gRPC.
 
 The REST API exposes the following methods:
