@@ -140,9 +140,9 @@ There are 3 source repositories:
 #### Clone
 To play with them, use `go get`.
 ```sh
-go get -u https://github.com/chrisjpalmer/word_search_system
-go get -u https://github.com/chrisjpalmer/word_search_api
-go get -u https://github.com/chrisjpalmer/word_search_system_grpc
+go get -u github.com/chrisjpalmer/word_search_system
+go get -u github.com/chrisjpalmer/word_search_api
+go get -u github.com/chrisjpalmer/word_search_system_grpc
 ```
 
 To see specific versions checkout to the tag:
