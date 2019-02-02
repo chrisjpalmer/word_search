@@ -15,6 +15,7 @@ Contents:
 ```sh
 git clone https://github.com/chrisjpalmer/word_search_cli
 cd word_search_cli
+npm install
 npm link
 
 cd /my/blank/proj/dir #specify a blank project directory
