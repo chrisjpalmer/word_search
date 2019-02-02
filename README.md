@@ -117,7 +117,7 @@ curl -H "Content-Type: application/json" -X GET "http://localhost/words?keyword=
 
 #Top 5 Searched Words
 curl -H "Content-Type: application/json" -X GET http://localhost/keywords
-{"keywords":["a","co","cool"]}
+{"keywords":["co"]}
 
 ```
 
