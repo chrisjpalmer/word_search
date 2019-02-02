@@ -159,7 +159,8 @@ This table shows the gRPC versions and which repos support them.
 
 | word_search_system_grpc | word_search_api version | word_search_system version |
 | :-- | :-- | :-- |
-| 1.0.0 | supported by: 1.0.0, 1.1.0, 1.2.0 | supported by: 1.0.0 |
+| 1.0.0 | unsupported | unsupported |
+| 1.0.1 | supported by: 1.0.0, 1.1.0, 1.2.0 | supported by: 1.0.0 |
 
 In reality, some scheme should be decided about when grpc versions are incompatible due to major change to the implementation.
 
