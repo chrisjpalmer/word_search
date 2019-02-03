@@ -1,7 +1,7 @@
 # Word Search
 ## Introduction
 Word Search application has 2 components:
-1. `word_search_system`: Responsible for managing the word list and facilitating queries to the it
+1. `word_search_system`: Responsible for managing the word list and facilitating queries to it
 2. `word_search_api`: Exposes a REST API for clients to use. Talks via gRPC to the `word_search_system`
 
 #### Prerequisites:
