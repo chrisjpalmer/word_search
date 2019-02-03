@@ -137,7 +137,7 @@ I guess in real situations, you would use a repo like this in conjunction with A
 There are 3 source repositories:
 1. https://github.com/chrisjpalmer/word_search_system : the `word_search_system` source
 2. https://github.com/chrisjpalmer/word_search_api : the `word_search_api` source
-3. https://github.com/chrisjpalmer/word_search_system_grpc : the protocol buffer definitions + transpiled go files for grpc communication
+3. https://github.com/chrisjpalmer/word_search_system_grpc : the grpc protocol definitions + transpiled go files -> this repo is a dependency of `word_search_system` and `word_search_api`
 
 #### Clone
 To play with them, use `go get`.
@@ -217,9 +217,9 @@ This component manages the words list and exposes 3 methods via gRPC for manipul
 2. AddWords - takes a list of words as a parameter and adds them to the words list.
 3. GetTop5KeyWords - returns the top 5 most searched keywords
 
-This component defines a service object called `WordSearchService` which is the domain for all word searching logic.
-Unit tests exist for this object.
-The component recieves gRPC function calls `SearchWord`, `AddWords`, `GetTop5KeyWords` and executes logic on `WordSearchService`.
+The `word_search_system` component defines a service object called `WordSearchService` which is the domain for all word searching logic.
+Unit tests exist for `WordSearchService`.
+`word_search_system` recieves gRPC function calls `SearchWord`, `AddWords`, `GetTop5KeyWords` and executes logic on `WordSearchService`.
 
 *word_search_api*
 
